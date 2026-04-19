@@ -25,7 +25,7 @@ const SideMenu = () => {
 		}
 	]
 	return (
-		<div className="flex flex-col gap-4 w-3/12 p-4 h-screen bg-[#1A1D24]">
+		<div className="flex flex-col gap-4 w-2/3 p-4 bg-[#1A1D24] border-r border-black">
 			<h1 className="text-5xl font-bold text-center text-[#FF8A00]">Wiki-Z</h1>
 			<p className="text-xl text-gray-500 text-center">Una wiki sobre el universo de Dragon Ball</p>
 			<div>

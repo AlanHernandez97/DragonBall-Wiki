@@ -3,8 +3,8 @@ import SideMenu from "./components/SideMenu/SideMenu";
 
 export function Layout() {
 	return (
-		<div>
-			<main className="flex">
+		<div className="w-full">
+			<main className="w-full flex">
 				<SideMenu />
 
 				<Outlet />
