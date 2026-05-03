@@ -2,6 +2,7 @@
 import { ReactNode, useEffect } from "react";
 import type { ICharacter } from "../../Types/Character";
 import type { IPlanet } from '../../Types/Planets';
+import { CircleX } from "lucide-react";
 
 interface ModalProps {
 	isOpen: boolean;
@@ -40,6 +41,9 @@ const Modal = ({ isOpen, onClose, children, character, planet }: ModalProps) => 
 				{/* CONTENIDO SCROLLEABLE */}
 				<div className="p-6 overflow-y-auto">
 					<div>
+						<div>
+							<CircleX onClick={onClose} className="absolute top-4 right-4 cursor-pointer" />
+						</div>
 						<div className='w-1/2 rounded-lg overflow-hidden border border-black shadow-2xl mx-auto shadow-[#FF8A00]'>
 							<img
 								src={character?.image}
@@ -59,23 +63,15 @@ const Modal = ({ isOpen, onClose, children, character, planet }: ModalProps) => 
 
 						<div className="flex gap-4 mt-4 w-full">
 							<div className="bg-[#191C22] text-white p-3 rounded-lg w-full">
-								<p className="text-center">{character?.race}</p>
+								<p>Raza</p>
+								<p >{character?.race}</p>
 							</div>
 							<div className="bg-[#191C22] text-white p-3 rounded-lg w-full">
-								<p className="text-center">{character?.gender}</p>
+								<p>Género:</p>
+								<p >{character?.gender}</p>
 							</div>
 						</div>
 					</div>
-				</div>
-
-				{/* FOOTER FIJO */}
-				<div className="p-4 border-t">
-					<button
-						className="bg-red-500 text-white rounded-lg px-4 py-2 w-full"
-						onClick={onClose}
-					>
-						Cerrar
-					</button>
 				</div>
 			</div>
 		</div>
