@@ -1,11 +1,19 @@
 
+import { useState } from 'react';
 import type { ICharacter } from '../../../Types/Character';
+import Modal from '../../Modals/Modal';
 
 interface ICharacterCardProps {
 	character: ICharacter;
 }
 
 const CharacterCard = ({ character }: ICharacterCardProps) => {
+
+	const [isOpen, setIsOpen] = useState(false);
+
+	const handleOpenModal = () => {
+		setIsOpen(true);
+	}
 
 
 	return (
@@ -31,9 +39,13 @@ const CharacterCard = ({ character }: ICharacterCardProps) => {
 						<p className='text-white text-xs'>Ki base:</p>
 						<p className='text-xs text-white'>{character.ki}</p>
 					</div>
-					<button className='mt-2 p-2 text-sm border border-black bg-[#FF8A00] rounded-lg text-center font-bold hover:scale-110 ease-in duration-300'>Ver más</button>
+					<button onClick={handleOpenModal} className='mt-2 p-2 text-sm border border-black bg-[#FF8A00] rounded-lg text-center font-bold hover:scale-110 ease-in duration-300'>Ver más</button>
 				</div>
 			</div>
+			<Modal isOpen={isOpen} onClose={() => setIsOpen(false)} character={character}>
+				<h2 className="text-xl text-black font-bold mb-4">Hola 👀</h2>
+				<p className='text-black'>Este es un modal con fondo difuminado.</p>
+			</Modal>
 		</div>
 	)
 }
