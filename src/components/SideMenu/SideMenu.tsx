@@ -1,4 +1,4 @@
-import { Earth, NotebookPen, Users, Zap } from "lucide-react"
+import { Earth,  Users, Zap } from "lucide-react"
 
 
 const SideMenu = () => {
@@ -7,11 +7,6 @@ const SideMenu = () => {
 			label: "Personajes",
 			path: "/",
 			icon: <Users />
-		},
-		{
-			label: "Sagas",
-			path: "/sagas",
-			icon: <NotebookPen />
 		},
 		{
 			label: "Planetas",
@@ -25,12 +20,12 @@ const SideMenu = () => {
 		}
 	]
 	return (
-		<div className="flex flex-col gap-4 w-2/3 p-4 bg-[#1A1D24] border-r border-black">
+		<div className="flex flex-col gap-4 w-150 h-screen p-4 bg-[#1A1D24] border-r border-black">
 			<h1 className="text-5xl font-bold text-center text-[#FF8A00]">Wiki-Z</h1>
 			<p className="text-xl text-gray-500 text-center">Una wiki sobre el universo de Dragon Ball</p>
 			<div>
 				{sideMenuItems.map((item) => (
-					<div key={item.label} className="flex items-center p-2 hover:bg-gray-100">
+					<div key={item.label} className="flex items-center rounded-xl p-2 hover:bg-gray-100 hover:rounded-xl hover:text-[#FF8A00] cursor-pointer transition-colors duration-300">
 						<div className="text-gray-500">{item.icon}</div>
 						<span className="ml-2 text-gray-500">{item.label}</span>
 					</div>

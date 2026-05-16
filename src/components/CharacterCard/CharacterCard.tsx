@@ -42,10 +42,8 @@ const CharacterCard = ({ character }: ICharacterCardProps) => {
 					<button onClick={handleOpenModal} className='mt-2 p-2 text-sm border border-black bg-[#FF8A00] rounded-lg text-center font-bold hover:scale-110 ease-in duration-300'>Ver más</button>
 				</div>
 			</div>
-			<Modal isOpen={isOpen} onClose={() => setIsOpen(false)} character={character}>
-				<h2 className="text-xl text-black font-bold mb-4">Hola 👀</h2>
-				<p className='text-black'>Este es un modal con fondo difuminado.</p>
-			</Modal>
+			<Modal isOpen={isOpen} onClose={() => setIsOpen(false)} character={character}/>
+				
 		</div>
 	)
 }

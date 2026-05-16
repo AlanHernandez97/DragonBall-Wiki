@@ -7,12 +7,11 @@ import { CircleX } from "lucide-react";
 interface ModalProps {
 	isOpen: boolean;
 	onClose: () => void;
-	children: ReactNode;
 	character?: ICharacter;
 	planet?: IPlanet;
 }
 
-const Modal = ({ isOpen, onClose, children, character, planet }: ModalProps) => {
+const Modal = ({ isOpen, onClose, character, planet }: ModalProps) => {
 	useEffect(() => {
 		if (isOpen) {
 			document.body.style.overflow = "hidden";
@@ -28,7 +27,7 @@ const Modal = ({ isOpen, onClose, children, character, planet }: ModalProps) => 
 	if (!isOpen) return null;
 
 	return (
-		<div className="fixed inset-0 z-50 flex items-center justify-center w-full p-4">
+		<div className="fixed inset-0 z-50 flex items-center justify-center p-4">
 			{/* Overlay */}
 			<div
 				className="absolute inset-0 bg-black/40 backdrop-blur-sm"
@@ -36,7 +35,7 @@ const Modal = ({ isOpen, onClose, children, character, planet }: ModalProps) => 
 			/>
 
 			{/* Modal */}
-			<div className="relative z-10 bg-[#44474F] rounded-2xl shadow-xl w-full max-w-md max-h-[80vh] flex flex-col text-white">
+			<div className="relative z-10 bg-[#44474F] rounded-2xl shadow-xl w-200 max-h-[80vh] flex flex-col text-white">
 
 				{/* CONTENIDO SCROLLEABLE */}
 				<div className="p-6 overflow-y-auto">
@@ -44,7 +43,7 @@ const Modal = ({ isOpen, onClose, children, character, planet }: ModalProps) => 
 						<div>
 							<CircleX onClick={onClose} className="absolute top-4 right-4 cursor-pointer" />
 						</div>
-						<div className='w-1/2 rounded-lg overflow-hidden border border-black shadow-2xl mx-auto shadow-[#FF8A00]'>
+						<div className='w-1/3 rounded-lg overflow-hidden border border-black shadow-2xl mx-auto shadow-[#FF8A00]'>
 							<img
 								src={character?.image}
 								alt="imagen-personaje"
