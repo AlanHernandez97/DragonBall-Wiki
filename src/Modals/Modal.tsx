@@ -3,12 +3,14 @@ import { ReactNode, useEffect } from "react";
 import type { ICharacter } from "../../Types/Character";
 import type { IPlanet } from '../../Types/Planets';
 import { CircleX } from "lucide-react";
+import type { ITransformation } from "../../Types/Transformation";
 
 interface ModalProps {
 	isOpen: boolean;
 	onClose: () => void;
-	character?: ICharacter;
+	character: ICharacter | null;
 	planet?: IPlanet;
+	transformations: ITransformation[];
 }
 
 const Modal = ({ isOpen, onClose, character, planet }: ModalProps) => {
@@ -24,7 +26,10 @@ const Modal = ({ isOpen, onClose, character, planet }: ModalProps) => {
 		};
 	}, [isOpen]);
 
+
 	if (!isOpen) return null;
+
+	console.log('Character:', character)
 
 	return (
 		<div className="fixed inset-0 z-50 flex items-center justify-center p-4">

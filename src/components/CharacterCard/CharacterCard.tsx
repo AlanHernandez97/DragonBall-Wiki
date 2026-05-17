@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import type { ICharacter } from '../../../Types/Character';
 import Modal from '../../Modals/Modal';
+import useCharacters from '../../../hooks/useCharacters';
 
 interface ICharacterCardProps {
 	character: ICharacter;
@@ -9,13 +10,19 @@ interface ICharacterCardProps {
 
 const CharacterCard = ({ character }: ICharacterCardProps) => {
 
+	const { transformations } = useCharacters()
 	const [isOpen, setIsOpen] = useState(false);
+	const [selectedCharacter, setSelectedCharacter] = useState<ICharacter | null>(null)
 
 	const handleOpenModal = () => {
 		setIsOpen(true);
 	}
 
-
+	const getCharacterById = async (id: number) => {
+		const response = await fetch(`${import.meta.env.VITE_URL_BASE}/characters/${id}`);
+		const data = await response.json();
+		return setSelectedCharacter(data)
+	}
 	return (
 		<div className='w-72 h-64 bg-[#44474F] text-white p-2 shadow-lg rounded-lg mt-4 border border-[#44474F] hover:shadow-[#FF8A00] ease-in duration-400'>
 			<div className='flex gap-4 pb-2 mb-2 '>
@@ -39,11 +46,15 @@ const CharacterCard = ({ character }: ICharacterCardProps) => {
 						<p className='text-white text-xs'>Ki base:</p>
 						<p className='text-xs text-white'>{character.ki}</p>
 					</div>
-					<button onClick={handleOpenModal} className='mt-2 p-2 text-sm border border-black bg-[#FF8A00] rounded-lg text-center font-bold hover:scale-110 ease-in duration-300'>Ver más</button>
+					<button onClick={() => {
+						handleOpenModal();
+						getCharacterById(character.id)
+
+					}} className='mt-2 p-2 text-sm border border-black bg-[#FF8A00] rounded-lg text-center font-bold hover:scale-110 ease-in duration-300'>Ver más</button>
 				</div>
 			</div>
-			<Modal isOpen={isOpen} onClose={() => setIsOpen(false)} character={character}/>
-				
+			<Modal isOpen={isOpen} onClose={() => setIsOpen(false)} character={selectedCharacter} transformations={transformations} />
+
 		</div>
 	)
 }
