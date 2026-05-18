@@ -4,6 +4,8 @@ import type { ICharacter } from "../../Types/Character";
 import type { IPlanet } from '../../Types/Planets';
 import { CircleX } from "lucide-react";
 import type { ITransformation } from "../../Types/Transformation";
+import PowerSlider from "../components/UI/PowerSlider/PowerSlider";
+import PowerCard from "../components/PowerCard/PowerCard";
 
 interface ModalProps {
 	isOpen: boolean;
@@ -74,6 +76,37 @@ const Modal = ({ isOpen, onClose, character, planet }: ModalProps) => {
 								<p>Género:</p>
 								<p >{character?.gender}</p>
 							</div>
+						</div>
+						<div className="my-4">
+							<PowerSlider label="Ki" value={character?.ki} maxValue={character?.maxKi} color="#FF8A00" />
+						</div>
+						<div className="w-[700px] p-3 border border-black rounded-xl bg-[#191C22] my-4 mx-auto">
+							<div className="w-full flex flex-col gap-2">
+								<div className="w-full flex justify-between items-center">
+									<p className="text-[#FF8A00] text-xl font-bold uppercase">Planeta de origen</p>
+									<div className={`w-20 h-fit p-1 rounded-full text-sm text-center ${!character?.originPlanet?.isDestroyed ? "bg-emerald-100 text-emerald-500" : "bg-red-100 text-red-500"}`}>
+										<p>{character?.originPlanet?.isDestroyed === true ? "Destuído" : "Con vida"}</p>
+									</div>
+								</div>
+								<div className="flex gap-6 my-4 items-center flex-wrap lg:flex-nowrap">
+									<div className="w-4/5">
+										<p className="text-lg font-bold">{character?.originPlanet?.name}</p>
+										<p className="text-sm">{character?.originPlanet?.description}</p>
+									</div>
+									<div className="">
+										<img src={character?.originPlanet?.image} />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div className="w-full flex gap-4 flex-wrap my-4 mx-auto justify-start">
+							{
+								character?.transformations.map(power => (
+
+									<PowerCard key={power.id} power={power} />
+
+								))
+							}
 						</div>
 					</div>
 				</div>

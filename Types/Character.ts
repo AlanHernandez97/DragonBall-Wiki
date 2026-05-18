@@ -5,7 +5,7 @@ export interface ICharacter {
 	id: number
 	name: string
 	race: string;
-	originPlanet: IPlanet[];
+	originPlanet: IPlanet;
 	affiliation: string;
 	description: string;
 	image: string;

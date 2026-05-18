@@ -1,4 +1,4 @@
-import { Earth,  Users, Zap } from "lucide-react"
+import { Earth, Users } from "lucide-react"
 
 
 const SideMenu = () => {
@@ -12,11 +12,6 @@ const SideMenu = () => {
 			label: "Planetas",
 			path: "/planets",
 			icon: <Earth />
-		},
-		{
-			label: "Poder",
-			path: "/power",
-			icon: <Zap />
 		}
 	]
 	return (

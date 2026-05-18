@@ -23,6 +23,8 @@ const CharacterCard = ({ character }: ICharacterCardProps) => {
 		const data = await response.json();
 		return setSelectedCharacter(data)
 	}
+
+	console.log(character)
 	return (
 		<div className='w-72 h-64 bg-[#44474F] text-white p-2 shadow-lg rounded-lg mt-4 border border-[#44474F] hover:shadow-[#FF8A00] ease-in duration-400'>
 			<div className='flex gap-4 pb-2 mb-2 '>
