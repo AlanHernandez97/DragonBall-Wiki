@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Earth, Users } from "lucide-react";
+import { Earth, Star, Users } from "lucide-react";
 
 const SideMenu = () => {
 
@@ -13,6 +13,11 @@ const SideMenu = () => {
 			label: "Planetas",
 			path: "/planets",
 			icon: <Earth />
+		},
+		{
+			label: "Favoritos",
+			path: "/favorites",
+			icon: <Star/>
 		}
 	];
 
@@ -27,12 +32,12 @@ const SideMenu = () => {
 				Una wiki sobre el universo de Dragon Ball
 			</p>
 
-			<div>
+			<div className="w-full hover:text-[#FF8A00]">
 				{sideMenuItems.map((item) => (
 					<Link
 						key={item.label}
 						to={item.path}
-						className="flex items-center rounded-xl p-2 hover:bg-gray-100 hover:text-[#FF8A00] cursor-pointer transition-colors duration-300"
+						className="flex items-center rounded-xl p-2 hover:bg-gray-100 cursor-pointer transition-colors duration-300"
 					>
 						<div className="text-gray-500">
 							{item.icon}

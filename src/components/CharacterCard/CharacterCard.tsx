@@ -3,12 +3,16 @@ import { useState } from 'react';
 import type { ICharacter } from '../../../Types/Character';
 import Modal from '../../Modals/Modal';
 import useCharacters from '../../../hooks/useCharacters';
+import { Star, StarOff } from 'lucide-react';
 
 interface ICharacterCardProps {
 	character: ICharacter;
+	onAddFavorite: (character: ICharacter) => void;
+	onRemoveFavorite: (id: number) => void;
+	isFavorite: boolean;
 }
 
-const CharacterCard = ({ character }: ICharacterCardProps) => {
+const CharacterCard = ({ character, onAddFavorite, onRemoveFavorite, isFavorite }: ICharacterCardProps) => {
 
 	const { transformations } = useCharacters()
 	const [isOpen, setIsOpen] = useState(false);
@@ -26,28 +30,45 @@ const CharacterCard = ({ character }: ICharacterCardProps) => {
 
 	console.log(character)
 	return (
-		<div className='w-72 h-64 bg-[#44474F] text-white p-2 shadow-lg rounded-lg mt-4 border border-[#44474F] hover:shadow-[#FF8A00] ease-in duration-400'>
-			<div className='flex gap-4 pb-2 mb-2 '>
-				<div className='w-1/2 h-56 rounded-lg overflow-hidden border border-black'>
-					<img
-						src={character.image}
-						alt="imagen-personaje"
-						className='object-cover transition-transform duration-300 hover:scale-110'
-					/>
+		<div className='w-72 h-80 bg-[#44474F] text-white p-2 shadow-lg rounded-lg mt-4 border border-[#44474F] hover:shadow-[#FF8A00] ease-in duration-400'>
+			<div className='flex flex-col gap-4'>
+				<div className='flex gap-4 pb-2 mb-2 '>
+					<div className='w-1/2 h-56 rounded-lg overflow-hidden border border-black'>
+						<img
+							src={character.image}
+							alt="imagen-personaje"
+							className='object-cover transition-transform duration-300 hover:scale-110'
+						/>
+					</div>
+					<div className='w-1/2 my-10 flex flex-col gap-2'>
+						<div className='p-1 text-xs bg-[#FF8A00] w-fit h-fit rounded-full text-center font-bold left-0'>{character.affiliation}</div>
+
+						<h2 className='text-xl font-bold'>{character.name}</h2>
+
+						<div className='flex justify-between items-center'>
+							<p className='text-white text-xs'>Raza:</p>
+							<p className='text-xs text-white'>{character.race}</p>
+						</div>
+						<div className='flex justify-between items-center'>
+							<p className='text-white text-xs'>Ki base:</p>
+							<p className='text-xs text-white'>{character.ki}</p>
+						</div>
+						
+					</div>
 				</div>
-				<div className='w-1/2 my-10 flex flex-col gap-2'>
-					<div className='p-1 text-xs bg-[#FF8A00] w-fit h-fit rounded-full text-center font-bold left-0'>{character.affiliation}</div>
-
-					<h2 className='text-xl font-bold'>{character.name}</h2>
-
-					<div className='flex justify-between items-center'>
-						<p className='text-white text-xs'>Raza:</p>
-						<p className='text-xs text-white'>{character.race}</p>
-					</div>
-					<div className='flex justify-between items-center'>
-						<p className='text-white text-xs'>Ki base:</p>
-						<p className='text-xs text-white'>{character.ki}</p>
-					</div>
+				<div className='w-full flex gap-4 justify-between items-center'>
+					{
+                        !isFavorite ? (
+                        <div className='flex flex-col justify-start items-center' onClick={()=> onAddFavorite(character)}>
+                            <p className='text-[#FF8A00] text-sm'>Agregar a favoritos</p>
+                            <Star className={isFavorite ? 'fill-[#ffd000] text-[#ffd000]' : 'text-white'}/>  
+                        </div>
+                        ) :  
+                        <div className='flex flex-col justify-start items-center' onClick={()=> onRemoveFavorite(character.id )}>
+                            <p className='text-[#FF8A00] text-sm'>Quitar de favoritos</p>
+                            <StarOff className={isFavorite ? 'fill-[#ffd000] text-[#ffd000]' : 'text-white'}/>  
+                        </div>
+                    }
 					<button onClick={() => {
 						handleOpenModal();
 						getCharacterById(character.id)
