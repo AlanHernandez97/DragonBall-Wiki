@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import type { ICharacter } from '../Types/Character';
-import { IPlanet } from "../Types/Planets";
-import { ITransformation } from "../Types/Transformation";
+import type  { IPlanet } from "../Types/Planets";
+import type { ITransformation } from "../Types/Transformation";
 
 const useCharacters = () => {
 	const [characters, setCharacters] = useState<ICharacter[]>([]);

@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, useEffect } from "react";
+import { useEffect } from "react";
 import type { ICharacter } from "../../Types/Character";
 import type { IPlanet } from '../../Types/Planets';
 import { CircleX } from "lucide-react";
@@ -15,7 +15,7 @@ interface ModalProps {
 	transformations: ITransformation[];
 }
 
-const Modal = ({ isOpen, onClose, character, planet }: ModalProps) => {
+const Modal = ({ isOpen, onClose, character}: ModalProps) => {
 	useEffect(() => {
 		if (isOpen) {
 			document.body.style.overflow = "hidden";

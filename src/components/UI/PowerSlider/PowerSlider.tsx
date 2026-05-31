@@ -1,7 +1,7 @@
 interface PowerSliderProps {
     label: string;
-    value: string;
-    maxValue: string;
+    value?: string;
+    maxValue?: string;
     color?: string;
 }
 
