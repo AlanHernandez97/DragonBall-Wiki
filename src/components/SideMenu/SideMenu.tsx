@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Earth, Star, Users } from "lucide-react";
+import { Earth, Users } from "lucide-react";
 
 const SideMenu = () => {
 
@@ -13,11 +13,6 @@ const SideMenu = () => {
 			label: "Planetas",
 			path: "/planets",
 			icon: <Earth />
-		},
-		{
-			label: "Favoritos",
-			path: "/favorites",
-			icon: <Star/>
 		}
 	];
 
