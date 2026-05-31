@@ -1,7 +1,7 @@
 interface PowerSliderProps {
     label: string;
-    value?: string;
-    maxValue?: string;
+    value: string | undefined;
+    maxValue?: string | undefined;
     color?: string;
 }
 
@@ -28,8 +28,8 @@ const PowerSlider = ({
     color = "#ff9f43",
 }: PowerSliderProps) => {
 
-    const current = safeBigInt(value);
-    const max = safeBigInt(maxValue);
+    const current = safeBigInt(value!);
+    const max = safeBigInt(maxValue!);
 
     const percentage =
         max > 0n
@@ -47,7 +47,7 @@ const PowerSlider = ({
                 </h2>
 
                 <span className="text-3xl font-extrabold">
-                    {formatPower(value)}
+                    {formatPower(value!)}
                 </span>
             </div>
 
